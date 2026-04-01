@@ -2,7 +2,13 @@
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
-function Header(){
+const headerContent = ["Getting Start","Lets Start","Get Started"];
+   function setRandomNumber(max){
+    return Math.floor(Math.random()*(max+1));
+   }
+export default function Header(){
+    let dynamicContent = headerContent[setRandomNumber(headerContent.length-1)];
+    return (
      <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
@@ -22,5 +28,6 @@ function Header(){
           Count is {count}
         </button>
       </section>
+      )
  }
- export default Header
+ 
