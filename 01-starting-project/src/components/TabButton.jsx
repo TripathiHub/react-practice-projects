@@ -1,10 +1,7 @@
-export default function TabButton({children,onClick}){
-    function handleClick(){
-        console.log("Button is clicked");
-    }
+export default function TabButton({children,onClick,isSelected}){
     return(
         <li>
-            <button type="button" onClick={onClick}>{children}</button>
+            <button type="button" className={isSelected ? "active" : undefined} onClick={onClick}>{children}</button>
         </li>
     );
 }

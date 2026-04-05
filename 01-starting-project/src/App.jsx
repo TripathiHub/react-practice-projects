@@ -5,9 +5,13 @@ import TabButton from './components/TabButton.jsx';
 import { useState } from 'react';
 import  {EXAMPLES} from './data.js'
 function App() {
-  const [selectedContent,setSelectedContent] = useState("components");
+  let dynamicSelected = "";
+  const [selectedContent,setSelectedContent] = useState(false);
   function handleClick(selectedButton){
     setSelectedContent(selectedButton);
+  }
+  if(!selectedContent){
+    dynamicSelected="PLEASE select to get further details"
   }
   return (
     <div>
@@ -30,12 +34,22 @@ function App() {
         <section id='examples'>
           <h2>Examples</h2>
           <menu>
-           <TabButton onClick={()=>handleClick("components")}>Components</TabButton>
-           <TabButton onClick={()=>handleClick("jsx")}>JSX</TabButton>
-           <TabButton onClick={()=>handleClick("props")}>Props</TabButton>
-           <TabButton onClick={()=>handleClick("state")}>State</TabButton>
+           <TabButton 
+           isSelected={selectedContent==="components"} 
+           onClick={()=>handleClick("components")}>Components</TabButton>
+           <TabButton 
+           isSelected={selectedContent==="jsx"} 
+           onClick={()=>handleClick("jsx")}>JSX</TabButton>
+           <TabButton  
+           isSelected={selectedContent==="props"} 
+           onClick={()=>handleClick("props")}>Props</TabButton>
+           <TabButton  
+           isSelected={selectedContent==="state"} 
+           onClick={()=>handleClick("state")}>State</TabButton>
            {/*label attribute can be also used here */}
           </menu>
+          {dynamicSelected}
+          { selectedContent &&
           <div id='tab-content'>
             <h3>{EXAMPLES[selectedContent].title}</h3>
             <p>{EXAMPLES[selectedContent].description}</p>
@@ -45,6 +59,7 @@ function App() {
               </code>
             </pre>
           </div>
+}
         </section>
       </main>
     </div>
