@@ -2,6 +2,7 @@ import { EXAMPLES } from "../data";
 import TabButton from "./TabButton";
 import { useState } from "react";
 import Section from "./Section";
+import Tabs from "./tabs";
 
 export default function Examples(){
      let dynamicSelected = "";
@@ -11,12 +12,26 @@ export default function Examples(){
       }
       if(!selectedContent){
         dynamicSelected="PLEASE select to get further details"
-      }   
+      } 
+      else if(selectedContent){
+        dynamicSelected= (
+          <div id='tab-content'>
+                    <h3>{EXAMPLES[selectedContent].title}</h3>
+                    <p>{EXAMPLES[selectedContent].description}</p>
+                    <pre>
+                      <code>
+                         {EXAMPLES[selectedContent].code}
+                      </code>
+                    </pre>
+                    </div>
+        );
+      }
     return(
         <>
         <Section id='examples' title="Examples">
-                  <menu>
-                   <TabButton 
+          <Tabs button={
+            <>
+            <TabButton 
                    isSelected={selectedContent==="components"} 
                    onClick={()=>handleClick("components")}>Components</TabButton>
                    <TabButton 
@@ -28,20 +43,10 @@ export default function Examples(){
                    <TabButton
                    isSelected={selectedContent==="state"} 
                    onClick={()=>handleClick("state")}>State</TabButton>
-                   {/*label attribute can be also used here */}
-                  </menu>
+                   </>
+                  }>
                   {dynamicSelected}
-                  { selectedContent &&
-                  <div id='tab-content'>
-                    <h3>{EXAMPLES[selectedContent].title}</h3>
-                    <p>{EXAMPLES[selectedContent].description}</p>
-                    <pre>
-                      <code>
-                         {EXAMPLES[selectedContent].code}
-                      </code>
-                    </pre>
-                  </div>
-        }
+                  </Tabs>
                 </Section>
         </>
     );
