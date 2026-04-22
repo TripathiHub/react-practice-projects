@@ -1,6 +1,7 @@
 import { EXAMPLES } from "../data";
 import TabButton from "./TabButton";
 import { useState } from "react";
+import Section from "./Section";
 
 export default function Examples(){
      let dynamicSelected = "";
@@ -13,19 +14,18 @@ export default function Examples(){
       }   
     return(
         <>
-        <section id='examples'>
-                  <h2>Examples</h2>
+        <Section id='examples' title="Examples">
                   <menu>
                    <TabButton 
                    isSelected={selectedContent==="components"} 
                    onClick={()=>handleClick("components")}>Components</TabButton>
                    <TabButton 
-                   isSelected={selectedContent==="jsx"} 
+                   isSelected={selectedContent==="jsx"}
                    onClick={()=>handleClick("jsx")}>JSX</TabButton>
                    <TabButton  
-                   isSelected={selectedContent==="props"} 
+                   isSelected={selectedContent==="props"}
                    onClick={()=>handleClick("props")}>Props</TabButton>
-                   <TabButton  
+                   <TabButton
                    isSelected={selectedContent==="state"} 
                    onClick={()=>handleClick("state")}>State</TabButton>
                    {/*label attribute can be also used here */}
@@ -42,7 +42,7 @@ export default function Examples(){
                     </pre>
                   </div>
         }
-                </section>
+                </Section>
         </>
     );
 }
