@@ -4,14 +4,15 @@ const initialGameBoard=[
     [null,null,null],
     [null,null,null]
 ]
-export default function GameBoard(){
+export default function GameBoard({activeSymbol ,onSelected}){
      const [gameBoard,setGameBoard]= useState(initialGameBoard);
      function handleGameBoard(rowIndex,colIndex){
          setGameBoard((previousGameBoard)=>{
              const updatedGameBoard = [...previousGameBoard.map((col)=> [...col])];
-             updatedGameBoard[rowIndex][colIndex]="X";
+             updatedGameBoard[rowIndex][colIndex]=activeSymbol;
              return updatedGameBoard;
-         })
+         });
+         onSelected();
      }
     return(
         <>
