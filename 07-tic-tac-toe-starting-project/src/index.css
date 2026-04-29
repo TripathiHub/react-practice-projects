@@ -349,3 +349,95 @@ ol {
     transform: scale(1);
   }
 }
+/* ================= MOBILE RESPONSIVE FIX ================= */
+
+@media (max-width: 768px) {
+  body {
+    min-height: auto;
+  }
+
+  header img {
+    width: 6rem;
+    margin: 2rem auto 1rem auto;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  #game-container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  /* Players stack vertically */
+  #players {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #players li {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .player-name,
+  .player input {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .player-symbol {
+    margin-left: 0.5rem;
+  }
+
+  /* Game board smaller */
+  #game-board {
+    gap: 1rem;
+  }
+
+  #game-board ol {
+    gap: 1rem;
+  }
+
+  #game-board button {
+    width: 5rem;
+    height: 5rem;
+    font-size: 2.5rem;
+    padding: 0.5rem;
+  }
+
+  /* Game over text */
+  #game-over h2 {
+    font-size: 2rem;
+  }
+
+  #game-over p {
+    font-size: 1.2rem;
+  }
+
+  #game-over button {
+    font-size: 1rem;
+  }
+
+  /* Log */
+  #log {
+    max-width: 90%;
+    font-size: 0.9rem;
+  }
+}
+
+/* ================= EXTRA SMALL DEVICES ================= */
+
+@media (max-width: 480px) {
+  #game-board button {
+    width: 4rem;
+    height: 4rem;
+    font-size: 2rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}
