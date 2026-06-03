@@ -9,11 +9,12 @@ function App() {
         expectedReturn : 7,
         duration : 10
     })
+    const isInputValid = userInput.duration>=1;
      function handleChange(inputIndentifier,newVaule){
         setUserInput((previousState)=>{
             return{
             ...previousState,
-           [inputIndentifier]:newVaule,
+           [inputIndentifier]:+newVaule,
             }
         })
      }
@@ -21,7 +22,9 @@ function App() {
     <>
      <Header/>
      <UserInput onChange={handleChange} userInput={userInput}/>
-     <Results input={userInput}/>
+     {!isInputValid && <p className="center">
+      PLease enter valid duration</p>}
+    { isInputValid && <Results input={userInput}/>}
     </>
   )
 }
