@@ -5,17 +5,17 @@ export default function Results({input}){
    const resultsYearlyData = calculateYearlyData(input);
 return(
     <>
-    <div className='card-summary'>
-        <div>
-            <h3>Total Invested</h3>
+    <div className='cards-summary'>
+        <div className='card'>
+            <h3>Total Invested :</h3>
             <p>{formatter.format(resultsData.totalInvested)}</p>
         </div>
-         <div>
-            <h3>Wealth Gained</h3>
+         <div className='card'>
+            <h3>Wealth Gained :</h3>
             <p>{formatter.format(resultsData.wealthGained)}</p>
         </div>
-         <div>
-            <h3>Maturity Value</h3>
+         <div className='card'>
+            <h3>Maturity Value :</h3>
             <p>{formatter.format(resultsData.maturityValue)}</p>
         </div>
     </div>
