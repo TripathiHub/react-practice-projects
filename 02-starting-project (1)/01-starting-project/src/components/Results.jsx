@@ -1,34 +1,41 @@
-import {calculateInvestmentResults,formatter} from '../util/investment';
+import {calculateInvestmentResults,formatter,calculateYearlyData} 
+from '../util/investment';
 export default function Results({input}){
    const resultsData = calculateInvestmentResults(input);
-   const initialInvestment =
-   resultsData[0].valueEndOfYear -
-   resultsData[0].interest -
-   resultsData[0].annualInvestment;
+   const resultsYearlyData = calculateYearlyData(input);
 return(
     <>
+    <div className='card-summary'>
+        <div>
+            <h3>Total Invested</h3>
+            <p>{formatter.format(resultsData.totalInvested)}</p>
+        </div>
+         <div>
+            <h3>Wealth Gained</h3>
+            <p>{formatter.format(resultsData.wealthGained)}</p>
+        </div>
+         <div>
+            <h3>Maturity Value</h3>
+            <p>{formatter.format(resultsData.maturityValue)}</p>
+        </div>
+    </div>
     <table  id='result'>
       <thead>
         <tr>
             <th>Year</th>
-            <th>Investment Value</th>
-            <th>Interest (year)</th>
-            <th>Total Interest</th>
-            <th>Invested Capital</th>
+            <th>Total Invested</th>
+            <th>Wealth Gained</th>
+            <th>Maturity Value</th>
         </tr>
       </thead>
       <tbody>
-       {resultsData.map(yearData=>{
-        const totalInterest = 
-        yearData.valueEndOfYear - yearData.annualInvestment-initialInvestment;
-         const totalAmountInvested = yearData.valueEndOfYear - totalInterest;
+       {resultsYearlyData.map(yearData=>{
         return(
             <tr key={yearData.year}>
                 <td>{yearData.year}</td>
-                <td>{formatter.format(yearData.valueEndOfYear)}</td>
-                <td>{formatter.format(yearData.interest)}</td>
-                <td>{formatter.format(totalInterest)}</td>
-                <td>{formatter.format(totalAmountInvested)}</td>
+                <td>{formatter.format(yearData.totalInvested)}</td>
+                <td>{formatter.format(yearData.wealthGained)}</td>
+                <td>{formatter.format(yearData.maturityValue)}</td>
             </tr>
         )
        })}
