@@ -4,7 +4,8 @@ export default function Header(){
         <>
         <header>
         <img src={logo} alt="Logo of Smart SIP Advisor by HT"/>
-        <h1>Smart SIP Advisor</h1>
+        <h1>Plan Your Investments Smarter</h1>
+        <p className="subtitle">Get a personalized SIP recommendation</p>
         </header>
         </>
     )

@@ -1,76 +1,105 @@
-import { useState } from "react";
-export default function InputForm(){
-    const [isUserInput,setIsUserInput]=useState({
-        isEmi:"No",
-        isHealthInsurance:"No",
-        isLifeInsurance:"No"
-    })
-    function onChange(inputIndentifier,newValue){
-        setIsUserInput((previousState)=>{
-            return{
-        ...previousState,
-        [inputIndentifier]:newValue
-            }
-        })
-    }
+export default function InputForm({userInput,onChange,onclick}){
     return(
         <>
         <section className="input-form">
              <div className="input-label">
                 <p>
                     <label>Monthly Salary(INR) : </label>
-                    <input type="number" required/>
+                    <input type="number" placeholder="Enter your salary" required 
+                   value={userInput.monthlySalary} 
+                   onChange={(event)=>onChange("monthlySalary",event.target.value)}/>
                 </p>
                 <p>
                     <label>Age : </label>
-                    <input type="number" required/>
+                    <input type="number" placeholder="Enter your age" required
+                    value={userInput.age}
+                    onChange={(event)=>onChange("age",event.target.value)}/>
                 </p>
+                <p>
+                 <label>Gender :</label>
+                   <span className="radio-group">
+                   <input
+                         type="radio"
+                         id="male"
+                         name="gender"
+                         value="male"
+                         checked={userInput.gender === "male"}
+                         onChange={(event) =>
+                         onChange("gender", event.target.value)
+                         }
+                         />
+                         <label htmlFor="male">Male</label>
+                         <input
+                           type="radio"
+                           id="female"
+                           name="gender"
+                           value="female"
+                           checked={userInput.gender === "female"}
+                           onChange={(event) =>
+                             onChange("gender", event.target.value)
+                           }
+                         />
+                           <label htmlFor="female">Female</label>
+                           </span>
+                           </p>
              </div>
              <div className="input-label">
                 <p>
                     <label>Martial Status : </label>
-                    <select>
-                        <option value="">Single</option>
-                        <option value="">Married</option>
+                    <select value={userInput.maritalStatus}
+                    onChange={(event)=>{onChange("maritalStatus",event.target.value)
+                    }}>
+                        <option value="Single">Single</option>
+                        <option value="Married">Married</option>
                     </select>
                 </p>
                  <p>
                     <label>Health Insurance : </label>
-                    <select onChange={(event)=>{onChange("isHealthInsurance",event.target.value)}}>
+                    <select value={userInput.isHealthInsurance}
+                    onChange={(event)=>{onChange("isHealthInsurance",event.target.value)}}>
                         <option>No</option>
                         <option>Yes</option>
                     </select>
                 </p>
-                      {isUserInput.isHealthInsurance==="Yes" && 
+                      {userInput.isHealthInsurance==="Yes" && 
                     <p> <label>Monthly Installment : </label>
-                        <input type="number" />
+                        <input type="number" placeholder="Enter monthly premium" 
+                        value={userInput.healthInsuranceAmount}
+                        onChange={((event)=>onChange("healthInsuranceAmount",event.target.value))} />
                     </p>}
              </div>
              <div className="input-label">
                  <p>
                     <label>Life Insurance : </label>
-                    <select onChange={(event)=>{onChange("isLifeInsurance",event.target.value)}}>
+                    <select value={userInput.isLifeInsurance}
+                    onChange={(event)=>{onChange("isLifeInsurance",event.target.value)}}>
                         <option>No</option>
                         <option>Yes</option>
                     </select>
                 </p>
-                           {isUserInput.isLifeInsurance==="Yes" && 
+                           {userInput.isLifeInsurance==="Yes" && 
                     <p> <label>Monthly Installment : </label>
-                        <input type="number" />
+                        <input type="number" placeholder="Enter monthly premium"
+                        value={userInput.lifeInsuranceAmount}
+                        onChange={((event)=>onChange("lifeInsuranceAmount",event.target.value))} />
                     </p>   }
                      <p>
                     <label>EMI : </label>
-                    <select onChange={(event)=>{onChange("isEmi",event.target.value)}}>
+                    <select value={userInput.isEmi}
+                    onChange={(event)=>{onChange("isEmi",event.target.value)}}>
                         <option>No</option>
                         <option>Yes</option>
                     </select>
                 </p>
-                      {isUserInput.isEmi==="Yes" && 
+                      {userInput.isEmi==="Yes" && 
                     <p> <label>Monthly EMI Installment : </label>
-                        <input type="number" />
+                        <input type="number" placeholder="Enter monthly EMI amount" 
+                        value={userInput.emiAmount}
+                         onChange={((event)=>onChange("emiAmount",event.target.value))}/>
                     </p>}
              </div>
-             <button type="button">Recommend Monthly SIP Amount</button>
+             <button type="button" onClick={()=>onclick()}>Get SIP Recommendation</button>
+             
         </section>
         </>
     )
