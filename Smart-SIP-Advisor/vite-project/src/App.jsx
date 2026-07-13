@@ -3,6 +3,7 @@ import InputForm from './components/InputForm';
 import RecommendResults from './components/RecommendResults';
 import SipResults from './components/SipResults';
 import UserInput from './components/UserInput';
+import Menu from './components/Menu';
 import { calculateSipAmount } from './assets/calculation';
 import './App.css';
 import { useState } from 'react';
@@ -71,7 +72,7 @@ function App() {
       {showResult && <UserInput onChange={handleSipChange} userInput={sipInput} 
       onsipchange={onsipchange} userInput={finalSipInput}
       />}
-      {showSipResult && <SipResults input={finalSipInput}/>}
+      {showResult && <SipResults input={finalSipInput}/>}
     </>
   )
 }

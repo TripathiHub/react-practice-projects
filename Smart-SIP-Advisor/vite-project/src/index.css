@@ -91,6 +91,56 @@ header::after {
   width: 120px; height: 1px;
   background: linear-gradient(90deg, transparent, var(--cyan), transparent);
 }
+.header-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.header-content {
+  flex: 1;
+  text-align: center;
+}
+.menu-btn {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: #6176c4;
+  padding: 8px;
+  z-index: 1001;
+}
+
+.menu-btn:hover {
+  color: #d7d9dc;
+}
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background-color: #2c3e50;
+  color: white;
+  padding-top: 60px;
+  z-index: 1000;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 15px 20px;
+  cursor: pointer;
+}
+
+.sidebar li:hover {
+  background-color: #34495e;
+}
 
 h1 {
   font-family: var(--font-display);
