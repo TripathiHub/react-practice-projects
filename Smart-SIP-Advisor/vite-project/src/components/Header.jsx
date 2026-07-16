@@ -1,13 +1,13 @@
 import Menu from "./Menu";
 import logo from "../assets/image.png";
 
-export default function Header() {
+export default function Header({openLoginModal}) {
   return (
     <header>
       <nav className="navbar">
         <Menu />
         <div className="navbar-right">
-          <button className="login-btn">👤</button>
+          <button className="login-btn" onClick={openLoginModal}>👤</button>
         </div>
       </nav>
 

@@ -4,6 +4,7 @@ import RecommendResults from './components/RecommendResults';
 import SipResults from './components/SipResults';
 import UserInput from './components/UserInput';
 import Menu from './components/Menu';
+import PopupModal from './components/PopupModal';
 import { calculateSipAmount } from './assets/calculation';
 import './App.css';
 import { useState } from 'react';
@@ -63,9 +64,19 @@ function App() {
   monthlySipAmount:
     sipInput.monthlySipAmount || results.sipAmount,
 };
+const [isLoginModalOpen,setIsLoginModal]=useState(false);
+function openLoginModal(){
+    setIsLoginModal(true);
+}
+function closeLoginModal(){
+setIsLoginModal(false);
+}
    return (
     <>
-     <Header/>
+     <Header
+     openLoginModal={openLoginModal}/>
+        {isLoginModalOpen && 
+          <PopupModal closeLoginModal={closeLoginModal}/>}
      <InputForm userInput={userInput}
      onChange={onChange} onclick={onclick} />
       {showResult && <RecommendResults userInput={userInput}/>}
