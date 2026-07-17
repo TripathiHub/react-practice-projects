@@ -65,18 +65,28 @@ function App() {
     sipInput.monthlySipAmount || results.sipAmount,
 };
 const [isLoginModalOpen,setIsLoginModal]=useState(false);
+const [user,setUser]=useState(null);
 function openLoginModal(){
     setIsLoginModal(true);
 }
 function closeLoginModal(){
 setIsLoginModal(false);
 }
+function settingUser(name,photoUrl,email){
+    setUser({
+        name : name,
+        photoUrl : photoUrl,
+        email : email
+    })
+}
    return (
     <>
-     <Header
-     openLoginModal={openLoginModal}/>
+     <Header user={user}
+     openLoginModal={openLoginModal} 
+     />
         {isLoginModalOpen && 
-          <PopupModal closeLoginModal={closeLoginModal}/>}
+          <PopupModal closeLoginModal={closeLoginModal}
+           settingUser={settingUser}/>}
      <InputForm userInput={userInput}
      onChange={onChange} onclick={onclick} />
       {showResult && <RecommendResults userInput={userInput}/>}

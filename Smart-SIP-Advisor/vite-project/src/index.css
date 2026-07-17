@@ -354,7 +354,7 @@ header::after {
 .login-modal-header img {
   width: 160px;
   height: auto;
-  max-width: 60%;
+  max-width: 45%;
   border-radius: 8px;
   opacity: 0.9;
   margin: 0;
@@ -457,8 +457,184 @@ header::after {
 @media (max-width: 480px) {
   .login-modal { width: 100%; border-radius: 16px; }
   .login-modal-header { padding: 1rem 1rem 0.6rem; }
-  .login-modal-header img { width: 130px; }
+  .login-modal-header img { width: 200px; 
+  max-width: 65%;}
   .login-modal-main { padding: 1.25rem 1.1rem 1.5rem; }
+}
+/* ════════════════════════════════════════
+   USER PROFILE (logged-in state, Header)
+════════════════════════════════════════ */
+.user-profile:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 0 16px var(--cyan-glow);
+  transform: translateY(-1px);
+}
+
+.user-profile img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.user-profile span {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+  .user-profile {
+    padding: 4px 10px 4px 4px;
+    gap: 0.45rem;
+  }
+  .user-profile img { width: 28px; height: 28px; }
+  .user-profile span { font-size: 0.78rem; max-width: 90px; }
+}
+/* ════════════════════════════════════════
+   PROFILE TRIGGER + DROPDOWN (Header / ProfileMenu)
+════════════════════════════════════════ */
+.user-profile {
+  position: relative;
+}
+
+.profile-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 6px 14px 6px 6px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+
+.profile-trigger:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 0 16px var(--cyan-glow);
+  transform: translateY(-1px);
+}
+
+.profile-trigger img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.profile-trigger span {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── dropdown card ── */
+.profile-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 220px;
+  padding: 1.25rem 1.1rem 1.1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), 0 0 24px rgba(0, 212, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.35rem;
+  z-index: 1050;
+  animation: modalPop 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.profile-menu::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--purple), var(--cyan), var(--green));
+  opacity: 0.8;
+  border-radius: 16px 16px 0 0;
+}
+
+.profile-menu-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  margin-bottom: 0.4rem;
+}
+
+.profile-menu-name {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.profile-menu-email {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  word-break: break-all;
+  margin-bottom: 0.6rem;
+}
+
+.profile-menu-logout {
+  width: 100%;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.profile-menu-logout:hover {
+  border-color: rgba(255, 90, 90, 0.4);
+  color: #ff6b6b;
+  background: rgba(255, 90, 90, 0.06);
+}
+
+@media (max-width: 480px) {
+  .profile-trigger {
+    padding: 4px 10px 4px 4px;
+    gap: 0.45rem;
+  }
+  .profile-trigger img { width: 28px; height: 28px; }
+  .profile-trigger span { font-size: 0.78rem; max-width: 90px; }
+
+  .profile-menu {
+    width: 200px;
+    right: -8px;
+    padding: 1.1rem 1rem 1rem;
+  }
+  .profile-menu-avatar { width: 48px; height: 48px; }
 }
 h1 {
   font-family: var(--font-display);

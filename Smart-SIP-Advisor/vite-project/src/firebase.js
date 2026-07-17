@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider,signInWithPopup } from "firebase/auth";
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
+  apiKey: "AIzaSyDRHz023zTZ34Z1NztzRaJyr7IDLGdLnOU",
   authDomain: "smart-sip-calculator.firebaseapp.com",
   projectId: "smart-sip-calculator",
   storageBucket: "smart-sip-calculator.firebasestorage.app",
