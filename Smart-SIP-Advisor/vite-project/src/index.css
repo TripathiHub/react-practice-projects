@@ -464,43 +464,9 @@ header::after {
 /* ════════════════════════════════════════
    USER PROFILE (logged-in state, Header)
 ════════════════════════════════════════ */
-.user-profile:hover {
-  border-color: var(--border-hover);
-  box-shadow: 0 0 16px var(--cyan-glow);
-  transform: translateY(-1px);
-}
 
-.user-profile img {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid var(--border);
-  flex-shrink: 0;
-}
-
-.user-profile span {
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-  max-width: 140px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-@media (max-width: 480px) {
-  .user-profile {
-    padding: 4px 10px 4px 4px;
-    gap: 0.45rem;
-  }
-  .user-profile img { width: 28px; height: 28px; }
-  .user-profile span { font-size: 0.78rem; max-width: 90px; }
-}
 /* ════════════════════════════════════════
-   PROFILE TRIGGER + DROPDOWN (Header / ProfileMenu)
+   PROFILE DROPDOWN (single source of truth)
 ════════════════════════════════════════ */
 .user-profile {
   position: relative;
@@ -531,6 +497,7 @@ header::after {
   object-fit: cover;
   border: 1px solid var(--border);
   flex-shrink: 0;
+  opacity: 1;
 }
 
 .profile-trigger span {
@@ -544,7 +511,6 @@ header::after {
   text-overflow: ellipsis;
 }
 
-/* ── dropdown card ── */
 .profile-menu {
   position: absolute;
   top: calc(100% + 10px);
@@ -560,8 +526,8 @@ header::after {
   align-items: center;
   text-align: center;
   gap: 0.35rem;
-  z-index: 1050;
-  animation: modalPop 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  z-index: 2000;
+  opacity: 1;
 }
 
 .profile-menu::before {
@@ -581,6 +547,7 @@ header::after {
   object-fit: cover;
   border: 1px solid var(--border);
   margin-bottom: 0.4rem;
+  opacity: 1;
 }
 
 .profile-menu-name {
@@ -602,23 +569,26 @@ header::after {
 .profile-menu-logout {
   width: 100%;
   height: 40px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 90, 90, 0.4);
   border-radius: 10px;
-  background: transparent;
-  color: var(--text-secondary);
+  background: rgba(255, 90, 90, 0.06);
+  color: #ff6b6b;
   font-family: var(--font-display);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  transition: background 0.2s, transform 0.15s;
 }
 
 .profile-menu-logout:hover {
-  border-color: rgba(255, 90, 90, 0.4);
-  color: #ff6b6b;
-  background: rgba(255, 90, 90, 0.06);
+  background: rgba(255, 90, 90, 0.15);
+  transform: translateY(-1px);
+}
+
+.profile-menu-logout:active {
+  transform: translateY(0);
 }
 
 @media (max-width: 480px) {
@@ -630,8 +600,13 @@ header::after {
   .profile-trigger span { font-size: 0.78rem; max-width: 90px; }
 
   .profile-menu {
-    width: 200px;
-    right: -8px;
+    position: fixed;
+    top: 70px;
+    right: 12px;
+    left: 12px;
+    width: auto;
+    max-width: 260px;
+    margin-left: auto;
     padding: 1.1rem 1rem 1rem;
   }
   .profile-menu-avatar { width: 48px; height: 48px; }

@@ -15,12 +15,12 @@ export default function Header({openLoginModal,user}) {
         <div className="navbar-right">
          { user ? 
           <div className="user-profile">
-           <div  className="profile-trigeer" onClick={profileToggle} >
+           <div  className="profile-trigger" onClick={profileToggle} >
            <img src={user.photoUrl} alt="user-profile"/>
            <span>{user.name}</span>
            </div>
              {isProfileClicked && 
-              <ProfileMenu photoUrl={user.photoUrl} name={user.name} email={user.email}/>}
+          <ProfileMenu photoUrl={user.photoUrl} name={user.name} email={user.email}/>}
              </div>
           : <button className="login-btn" onClick={openLoginModal}>👤</button>
          }
