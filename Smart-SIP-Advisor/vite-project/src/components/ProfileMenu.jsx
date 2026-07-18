@@ -2,12 +2,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 export default function ProfileMenu({photoUrl,name,email}){
     function logout() {
-  signOut(auth)
-    .then(() => {
-   localStorage.removeItem("expiryTime") })
-    .catch((error) => {
-      console.error(error);
-    });
+  signOut(auth).catch((error)=>console.error(error));
 }
     return(
         <>

@@ -70,17 +70,6 @@ function App() {
 const [isLoginModalOpen,setIsLoginModal]=useState(false);
 const [user,setUser]=useState(null);
  useEffect(() => {
-  const expiry = localStorage.getItem("expiryTime");
-  if(expiry){
-    if(Number(expiry) < Date.now()){
-      signOut(auth).then(()=>{
-        localStorage.removeItem("expiryTime");
-      }).catch((error)=>{
-        console.error(error);
-      })   
-    }
-    return;
-  }
   const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
     if (firebaseUser) {
       setUser({
@@ -93,9 +82,25 @@ const [user,setUser]=useState(null);
     }
   });
 
-  return unsubscribe;
-}, []);
+  const interval = setInterval(() => {
+    const expiry = localStorage.getItem("expiryTime");
 
+    if (expiry && Date.now() > Number(expiry)) {
+      signOut(auth)
+        .then(() => {
+          localStorage.removeItem("expiryTime");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, 30000);
+
+  return () => {
+    unsubscribe();
+    clearInterval(interval);
+  };
+}, []);
 function openLoginModal(){
     setIsLoginModal(true);
 }
