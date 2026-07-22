@@ -5,6 +5,8 @@ import SipResults from './components/SipResults';
 import UserInput from './components/UserInput';
 import Menu from './components/Menu';
 import PopupModal from './components/PopupModal';
+import MutualFundList from './components/MutualFundList';
+import { recommendedFunds } from './fundsData';
 import { onAuthStateChanged } from "firebase/auth";
 import { calculateSipAmount } from './assets/calculation';
 import { auth } from "./firebase";
@@ -125,12 +127,20 @@ function settingUser(name,photoUrl,email){
           <PopupModal closeLoginModal={closeLoginModal}
            settingUser={settingUser}/>}
      <InputForm userInput={userInput}
-     onChange={onChange} onclick={onclick} />
+     onChange={onChange} onclick={onclick} /> 
       {showResult && <RecommendResults userInput={userInput}/>}
+      {showResult && (
+        <div className="fund-cards">
+       { recommendedFunds.map((fund)=>(
+        <MutualFundList schemeCode={fund.schemeCode} 
+        key={fund.schemeCode}/>))
+       }
+        </div>
+        )}
       {showResult && <UserInput onChange={handleSipChange} userInput={sipInput} 
       onsipchange={onsipchange} userInput={finalSipInput}
       />}
-      {showResult && <SipResults input={finalSipInput}/>}
+      {showSipResult && <SipResults input={finalSipInput}/>}
     </>
   )
 }
